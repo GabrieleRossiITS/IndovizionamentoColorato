@@ -25,12 +25,14 @@ function generateRandomRGBColor() {
 }
 
 const winStreakParagraph = document.getElementById("messaggio-risultato");
+
 let winStreak = 0;
 // for real-time variable change
 const variableHandler = {
     set(target, property, value) {
         target[property] = value;
         winStreakParagraph.textContent = value;
+        main();
         return true;
     },
 };
@@ -48,8 +50,7 @@ function main() {
     const colorHTMLElement = document.getElementById("codice-da-indovinare");
     const colorOptions = document.getElementsByClassName("quadrato-colore");
 
-    const winningButton =
-        Array.from(colorOptions)[parseInt((Math.random() * 4).toFixed(0))];
+    const winningButton = Array.from(colorOptions)[parseInt((Math.random() * 4).toFixed(0))];
 
     winStreakParagraph.textContent = winStreakMonitored.value;
     colorHTMLElement.textContent = winningColor;
