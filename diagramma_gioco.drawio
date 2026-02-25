@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.5.2">
+  <diagram name="Pagina-1" id="CduNLUGLGZJ4CZRWI9Ga">
+    <mxGraphModel dx="1737" dy="1097" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2336" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-33" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="590" width="660" x="580" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-34" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="immagine" vertex="1">
+          <mxGeometry height="60" width="120" x="860" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-35" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="nome gioco" vertex="1">
+          <mxGeometry height="60" width="120" x="860" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-36" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="60" width="120" x="650" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-37" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="60" width="120" x="1090" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-38" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="60" width="120" x="947" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-39" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="60" width="120" x="800" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-40" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="invia" vertex="1">
+          <mxGeometry height="60" width="120" x="860" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-41" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="cod generato" vertex="1">
+          <mxGeometry height="50" width="310" x="740" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="go-mMa-Rx7hOVUCU67oB-42" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="icon per generare un altro codice" vertex="1">
+          <mxGeometry height="60" width="60" x="1090" y="645" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
