@@ -1,10 +1,9 @@
 function decimalToHexString(number) {
-
-    if(number < 16) return "0" + number.toString(16).toUpperCase();
+    if (number < 16) return "0" + number.toString(16).toUpperCase();
 
     let numHEX = number.toString(16).toUpperCase();
 
-    if(numHEX.length < 2) return numHEX + "0"
+    if (numHEX.length < 2) return numHEX + "0";
 
     return numHEX;
 }
@@ -25,14 +24,52 @@ function generateRandomRGBColor() {
     return `RGB(${red},${blue},${green})`;
 }
 
+const winStreakParagraph = document.getElementById("messaggio-risultato");
 
-const colorHTMLElement = document.getElementById("codice-da-indovinare");
-colorHTMLElement.textContent = generateRandomHEXColor()
+let winStreak = 0;
+// for real-time variable change
+const variableHandler = {
+    set(target, property, value) {
+        target[property] = value;
+        winStreakParagraph.textContent = value;
+        main();
+        return true;
+    },
+};
+// accessible with winStreakMonitored.value
+const winStreakMonitored = new Proxy({ value: winStreak }, variableHandler);
 
-const colorOptions = document.getElementsByClassName("quadrato-colore");
+function handleButtonClick(evt) {
+    alert(evt.currentTarget.isWin ? "YOU WON!" : "YOU LOSE...");
+    winStreakMonitored.value = evt.currentTarget.isWin ? winStreakMonitored.value + 1 : 0;
+}
 
-Array.from(colorOptions).forEach((button) => {
-    const color = generateRandomHEXColor();
-    button.style.backgroundColor = color;
-    console.log(color)
-});
+function main() {
+    const winningColor = generateRandomHEXColor();
+
+    const colorHTMLElement = document.getElementById("codice-da-indovinare");
+    const colorOptions = document.getElementsByClassName("quadrato-colore");
+
+    const winningButton = Array.from(colorOptions)[parseInt((Math.random() * 4).toFixed(0))];
+
+    winStreakParagraph.textContent = winStreakMonitored.value;
+    colorHTMLElement.textContent = winningColor;
+
+    Array.from(colorOptions).forEach((button) => {
+        const color = generateRandomHEXColor();
+        button.style.backgroundColor = color;
+
+        button.removeEventListener("click", handleButtonClick);
+
+        if (button === winningButton) {
+            button.style.backgroundColor = winningColor;
+            button.addEventListener("click", handleButtonClick, false);
+            button.isWin = true;
+        } else {
+            button.addEventListener("click", handleButtonClick, false);
+            button.isWin = false;
+        }
+    });
+}
+
+main();
