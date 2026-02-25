@@ -24,29 +24,51 @@ function generateRandomRGBColor() {
     return `RGB(${red},${blue},${green})`;
 }
 
-const winningColor = generateRandomHEXColor();
+const winStreakParagraph = document.getElementById("messaggio-risultato");
+let winStreak = 0;
+// for real-time variable change
+const variableHandler = {
+    set(target, property, value) {
+        target[property] = value;
+        winStreakParagraph.textContent = value;
+        return true;
+    },
+};
+// accessible with winStreakMonitored.value
+const winStreakMonitored = new Proxy({ value: winStreak }, variableHandler);
 
-const colorHTMLElement = document.getElementById("codice-da-indovinare");
-const colorOptions = document.getElementsByClassName("quadrato-colore");
+function handleButtonClick(evt) {
+    alert(evt.currentTarget.isWin ? "YOU WON!" : "YOU LOSE...");
+    winStreakMonitored.value = evt.currentTarget.isWin ? winStreakMonitored.value + 1 : 0;
+}
 
-const winningButton =
-    Array.from(colorOptions)[parseInt((Math.random() * 4).toFixed(0))];
+function main() {
+    const winningColor = generateRandomHEXColor();
 
-colorHTMLElement.textContent = winningColor;
+    const colorHTMLElement = document.getElementById("codice-da-indovinare");
+    const colorOptions = document.getElementsByClassName("quadrato-colore");
 
-Array.from(colorOptions).forEach((button) => {
-    const color = generateRandomHEXColor();
-    button.style.backgroundColor = color;
+    const winningButton =
+        Array.from(colorOptions)[parseInt((Math.random() * 4).toFixed(0))];
 
-    if (button === winningButton) {
-        button.style.backgroundColor = winningColor;
-        button.addEventListener("click", () => {
-            alert("YOU WON!");
-        });
-    }else{
-        button.addEventListener("click", () => {
-            alert("YOU LOSE...");
-        });
-    }
+    winStreakParagraph.textContent = winStreakMonitored.value;
+    colorHTMLElement.textContent = winningColor;
 
-});
+    Array.from(colorOptions).forEach((button) => {
+        const color = generateRandomHEXColor();
+        button.style.backgroundColor = color;
+
+        button.removeEventListener("click", handleButtonClick);
+
+        if (button === winningButton) {
+            button.style.backgroundColor = winningColor;
+            button.addEventListener("click", handleButtonClick, false);
+            button.isWin = true;
+        } else {
+            button.addEventListener("click", handleButtonClick, false);
+            button.isWin = false;
+        }
+    });
+}
+
+main();
