@@ -1,10 +1,9 @@
 function decimalToHexString(number) {
-
-    if(number < 16) return "0" + number.toString(16).toUpperCase();
+    if (number < 16) return "0" + number.toString(16).toUpperCase();
 
     let numHEX = number.toString(16).toUpperCase();
 
-    if(numHEX.length < 2) return numHEX + "0"
+    if (numHEX.length < 2) return numHEX + "0";
 
     return numHEX;
 }
@@ -25,14 +24,29 @@ function generateRandomRGBColor() {
     return `RGB(${red},${blue},${green})`;
 }
 
+const winningColor = generateRandomHEXColor();
 
 const colorHTMLElement = document.getElementById("codice-da-indovinare");
-colorHTMLElement.textContent = generateRandomHEXColor()
-
 const colorOptions = document.getElementsByClassName("quadrato-colore");
+
+const winningButton =
+    Array.from(colorOptions)[parseInt((Math.random() * 4).toFixed(0))];
+
+colorHTMLElement.textContent = winningColor;
 
 Array.from(colorOptions).forEach((button) => {
     const color = generateRandomHEXColor();
     button.style.backgroundColor = color;
-    console.log(color)
+
+    if (button === winningButton) {
+        button.style.backgroundColor = winningColor;
+        button.addEventListener("click", () => {
+            alert("YOU WON!");
+        });
+    }else{
+        button.addEventListener("click", () => {
+            alert("YOU LOSE...");
+        });
+    }
+
 });
