@@ -13,7 +13,7 @@ function generateRandomHEXColor() {
     let green = decimalToHexString(parseInt((Math.random() * 255).toFixed(0)));
     let blue = decimalToHexString(parseInt((Math.random() * 255).toFixed(0)));
 
-    return `#${red}${blue}${green}`;
+    return `#${red}${green}${blue}`;
 }
 
 function generateRandomRGBColor() {
@@ -21,7 +21,7 @@ function generateRandomRGBColor() {
     let green = (Math.random() * 255).toFixed(0);
     let blue = (Math.random() * 255).toFixed(0);
 
-    return `RGB(${red},${blue},${green})`;
+    return `RGB(${red},${green},${blue})`;
 }
 
 const winStreakParagraph = document.getElementById("messaggio-risultato");
@@ -41,22 +41,25 @@ const winStreakMonitored = new Proxy({ value: winStreak }, variableHandler);
 
 function handleButtonClick(evt) {
     alert(evt.currentTarget.isWin ? "YOU WON!" : "YOU LOSE...");
-    winStreakMonitored.value = evt.currentTarget.isWin ? winStreakMonitored.value + 1 : 0;
+    winStreakMonitored.value = evt.currentTarget.isWin
+        ? winStreakMonitored.value + 1
+        : 0;
 }
 
-function main() {
-    const winningColor = generateRandomHEXColor();
+function main(mode) {
+    const winningColor = mode === "HEX" ? generateRandomHEXColor() : generateRandomRGBColor();
 
     const colorHTMLElement = document.getElementById("codice-da-indovinare");
     const colorOptions = document.getElementsByClassName("quadrato-colore");
 
-    const winningButton = Array.from(colorOptions)[parseInt((Math.random() * 4).toFixed(0))];
+    const winningButton =
+        Array.from(colorOptions)[parseInt((Math.random() * 4).toFixed(0))];
 
     winStreakParagraph.textContent = winStreakMonitored.value;
     colorHTMLElement.textContent = winningColor;
 
     Array.from(colorOptions).forEach((button) => {
-        const color = generateRandomHEXColor();
+        const color = mode === "HEX" ? generateRandomHEXColor() : generateRandomRGBColor();
         button.style.backgroundColor = color;
 
         button.removeEventListener("click", handleButtonClick);
@@ -72,4 +75,28 @@ function main() {
     });
 }
 
-main();
+let mode = "HEX";
+// for real-time variable change
+const modeVariableHandler = {
+    set(target, property, value) {
+        target[property] = value;
+        main(value);
+        return true;
+    },
+};
+// accessible with winStreakMonitored.value
+const modeMonitored = new Proxy({ value: mode }, modeVariableHandler);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const hexButton = document.getElementById("cambia-in-hex");
+    const rgbButton = document.getElementById("cambia-in-rgb");
+
+    hexButton.addEventListener("click", () => {
+        modeMonitored.value = "HEX";
+    })
+    rgbButton.addEventListener("click", () => {
+        modeMonitored.value = "RGB";
+    })
+});
+
+main(mode);

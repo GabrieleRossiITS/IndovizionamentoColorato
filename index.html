@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indovizionamento Colorato</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
         <h1>Indovina il Colore!</h1>
         <nav class="navbar">
             <ul class="navbar-list">
-                <li class="navbar-el" id="navbar-hex"><a href="">HEX</a></li>
-                <li class="navbar-el" id="navbar-rgb"><a href="">RGB</a></li>
+                <li class="navbar-el" id="navbar-hex">
+                    <button class="cambia-codice" id="cambia-in-hex">HEX</button>
+                </li>
+                <li class="navbar-el" id="navbar-rgb">
+                    <button class="cambia-codice" id="cambia-in-rgb">RGB</button>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main id="contenitore-centrale">
-        
-        <img src="immagini/immagine_sito.png"  class="immagine-testa">
+
+        <img src="immagini/immagine_sito.png" class="immagine-testa">
 
         <section id="area-codice">
             <h2 id="codice-da-indovinare"></h2>
@@ -41,4 +47,5 @@
 
     <script src="gioco.js"></script>
 </body>
+
 </html>
