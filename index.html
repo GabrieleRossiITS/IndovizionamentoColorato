@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indovizionamento Colorato</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Indovina il Colore!</h1>
+    </header>
+
+    <main id="contenitore-centrale">
+        
+        <img src="immagini/immagine_sito.png"  class="immagine-testa">
+
+        <section id="area-codice">
+            <h2 id="codice-da-indovinare">RGB(?, ?, ?)</h2>
+        </section>
+
+        <section id="griglia-quadrati" aria-label="Scegli il colore corretto">
+            <button class="quadrato-colore" id="opzione-1" type="button" aria-label="Opzione 1"></button>
+            <button class="quadrato-colore" id="opzione-2" type="button" aria-label="Opzione 2"></button>
+            <button class="quadrato-colore" id="opzione-3" type="button" aria-label="Opzione 3"></button>
+            <button class="quadrato-colore" id="opzione-4" type="button" aria-label="Opzione 4"></button>
+        </section>
+
+        <footer id="area-risultato">
+            <p id="messaggio-risultato"></p>
+        </footer>
+
+    </main>
+
+    <script src="gioco.js"></script>
+</body>
+</html>
